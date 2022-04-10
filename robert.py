@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from PIL import Image
 import cv2
 from math import sqrt
 import numpy as np
@@ -9,7 +8,7 @@ image = cv2.imread(filepath, 0)
 xsize = image.shape[0]
 ysize = image.shape[1]
 
-new_image = np.empty((xsize, ysize), int)
+result = np.empty((xsize, ysize), int)
 
 # üst, alt, sağ ve sol kısmı boş olan değerlerde bu yönler aynı değer kabul edilmiştir.
 # 2x2lik matriste sol en üst merkez nokta seçilmiştir
@@ -43,9 +42,8 @@ for i in range(xsize):
         Gx = P1 - P4
         Gy = P2 - P3
         G = sqrt(Gx**2+Gy**2)
-        new_image[i, j] = G
+        result[i, j] = G
 
-plt.imshow(new_image, cmap="gray")
+plt.imshow(result, cmap="gray")
 plt.show()
-im = Image.fromarray(new_image.astype(np.uint8))
-im.save("resultrobert.tif")
+cv2.imwrite('resultrobert.tif', result)

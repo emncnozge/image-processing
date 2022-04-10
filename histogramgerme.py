@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from PIL import Image
+import cv2
 
 eskimin = 110
 eskimax = 250
@@ -34,5 +34,4 @@ plt.show()
 plt.hist(image.flatten(), bins=256)
 plt.show()
 
-im = Image.fromarray(image)
-im.save("resultgerme.tif")
+cv2.imwrite('resultgerme.tif', image)

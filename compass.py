@@ -1,14 +1,14 @@
 import matplotlib.pyplot as plt
-from PIL import Image
 import cv2
 import numpy as np
+
 filepath = "lena-std.tif"
 image = cv2.imread(filepath, 0)
 
 xsize = image.shape[0]
 ysize = image.shape[1]
 
-new_image = np.empty((xsize, ysize), int)
+result = np.empty((xsize, ysize), int)
 
 # üst, alt, sağ ve sol kısmı boş olan değerlerde bu yönler aynı değer kabul edilmiştir.
 
@@ -90,9 +90,8 @@ for i in range(xsize):
         G270 = P1+P2-P3+P4-2*P5-P6+P7+P8-P9
         G315 = P1-P2-P3+P4-2*P5-P6+P7+P8+P9
         G = max(G0, G45, G90, G135, G180, G225, G270, G315)
-        new_image[i, j] = G
+        result[i, j] = G
 
-plt.imshow(new_image, cmap="gray")
+plt.imshow(result, cmap="gray")
 plt.show()
-im = Image.fromarray(new_image.astype(np.uint8))
-im.save("resultcompass.tif")
+cv2.imwrite('resultcompass.tif', result)
