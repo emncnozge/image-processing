@@ -1,3 +1,6 @@
+# 1306190022 - Emin Can ÖZGE
+# Python 3.10.4
+
 import matplotlib.pyplot as plt
 import cv2
 
@@ -13,8 +16,7 @@ if image.ndim!=2:
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     except:
         print("Fotoğraf RGB ya da grayscale değil!")
-plt.imshow(image, cmap="gray")
-plt.show()
+
 # Fotoğraftaki en büyük ve en küçük renk değerleri
 for i in image:
     for j in i:
@@ -40,7 +42,6 @@ for i in image:
 
 # Her pikselin hesaplanması
 probability[0] = counter[0]/image.size
-
 for i in range(1, 2**graylevel):
     probability[i] = probability[i-1]+(counter[i]/image.size)
 

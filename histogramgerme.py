@@ -1,3 +1,6 @@
+# 1306190022 - Emin Can ÖZGE
+# Python 3.10.4
+
 import matplotlib.pyplot as plt
 import cv2
 
