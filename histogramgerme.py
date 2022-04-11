@@ -7,7 +7,7 @@ yenimin = 90
 yenimax = 200
 max = 0
 
-filepath = "lena-std.tif"
+filepath = "lena.tif"
 image = plt.imread(filepath)
 
 # RGB fotoğrafı grayscale yapma

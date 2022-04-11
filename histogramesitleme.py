@@ -4,7 +4,7 @@ import cv2
 min = 9999999
 max = 0
 
-filepath = "lena-std.tif"
+filepath = "lena.tif"
 image = plt.imread(filepath)
 
 # RGB fotoğrafı grayscale yapma

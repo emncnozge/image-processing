@@ -3,7 +3,7 @@ import cv2
 from math import sqrt
 import numpy as np
 
-filepath = "lena-std.tif"
+filepath = "lena.tif"
 image = cv2.imread(filepath, 0)
 
 xsize = image.shape[0]

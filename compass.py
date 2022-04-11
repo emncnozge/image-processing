@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 
-filepath = "lena-std.tif"
+filepath = "lena.tif"
 image = cv2.imread(filepath, 0)
 
 xsize = image.shape[0]
