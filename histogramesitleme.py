@@ -22,7 +22,7 @@ for i in image:
         if j > max:
             max = j
             
-# Fotoğrafın gri seviyesi
+# Fotoğrafın gri seviyesi (Genellikle 8)
 graylevel=0
 while True:
     if 2**graylevel>max:

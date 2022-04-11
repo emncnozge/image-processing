@@ -1,10 +1,12 @@
 import matplotlib.pyplot as plt
 import cv2
 
-eskimin = 40
-eskimax = 103
-yenimin = 90
-yenimax = 200
+
+eskimin = int(input("Eski aralıktaki minimum değer: "))
+eskimax = int(input("Eski aralıktaki maksimum değer: "))
+yenimin = int(input("Yeni aralıktaki minimum değer: "))
+yenimax = int(input("Yeni aralıktaki maksimum değer: "))
+
 max = 0
 
 filepath = "lena.tif"
@@ -23,8 +25,8 @@ for i in image:
         if j > max:
             max = j
             
+# Fotoğrafın gri seviyesi (Genellikle 8)
 graylevel=0
-# Fotoğrafın gri seviyesi
 while True:
     if 2**graylevel>max:
         break
