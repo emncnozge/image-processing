@@ -88,4 +88,4 @@ for i in range(xsize):
 
 plt.imshow(result, cmap="gray")
 plt.show()
-cv2.imwrite('resultprewitt.tif', result)
+cv2.imwrite('prewitt_'+filepath, result)

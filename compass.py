@@ -94,4 +94,4 @@ for i in range(xsize):
 
 plt.imshow(result, cmap="gray")
 plt.show()
-cv2.imwrite('resultcompass.tif', result)
+cv2.imwrite('compass_'+filepath, result)

@@ -33,4 +33,4 @@ plt.show()
 plt.hist(image.flatten(), bins=256)
 plt.show()
 
-cv2.imwrite('resultgerme.tif', image)
+cv2.imwrite('histstr_'+filepath, image)

@@ -46,4 +46,4 @@ for i in range(xsize):
 
 plt.imshow(result, cmap="gray")
 plt.show()
-cv2.imwrite('resultrobert.tif', result)
+cv2.imwrite('robert_'+filepath, result)
