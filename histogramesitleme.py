@@ -8,12 +8,13 @@ filepath = "lena.tif"
 image = plt.imread(filepath)
 
 # RGB fotoğrafı grayscale yapma
-if image.ndim!=2: 
+if image.ndim!=2:
     try:
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     except:
         print("Fotoğraf RGB ya da grayscale değil!")
-        
+plt.imshow(image, cmap="gray")
+plt.show()
 # Fotoğraftaki en büyük ve en küçük renk değerleri
 for i in image:
     for j in i:
@@ -44,7 +45,7 @@ for i in range(1, 2**graylevel):
     probability[i] = probability[i-1]+(counter[i]/image.size)
 
 for i in range(len(probability)):
-    probability[i] = round(probability[i]*(2**graylevel))
+    probability[i] = round(probability[i]*((2**graylevel)-1))
 
 # Yeni değerlerin eski değerler üzerine yazılması
 for i in range(image.shape[0]):
