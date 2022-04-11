@@ -10,10 +10,12 @@ ysize = image.shape[1]
 
 result = np.empty((xsize, ysize), int)
 
-# üst, alt, sağ ve sol kısmı boş olan değerlerde bu yönler aynı değer kabul edilmiştir.
+# Üst, alt, sağ ve sol kısmı boş olan değerlerde bu yönler aynı değer kabul edilmiştir.
 
+# 3x3lük alanda her bir pikselin belirlenmesi
 for i in range(xsize):
     for j in range(ysize):
+
         if i == 0 and j == 0:  # sol en üst
             P1 = P2 = P3 = P4 = P5 = P7 = int(image[i, j])
             P6 = int(image[i, j+1])
@@ -81,6 +83,7 @@ for i in range(xsize):
             P8 = int(image[i+1, j])
             P9 = int(image[i+1, j+1])
 
+        # 45 derece döndürülerek hesaplanan tüm G değerleri
         G0 = -P1-P2-P3+P4-2*P5+P6+P7+P8+P9
         G45 = -P1-P2+P3-P4-2*P5+P6+P7+P8+P9
         G90 = -P1+P2+P3-P4-2*P5+P6-P7+P8+P9
@@ -89,9 +92,16 @@ for i in range(xsize):
         G225 = P1+P2+P3+P4-2*P5-P6+P7-P8-P9
         G270 = P1+P2-P3+P4-2*P5-P6+P7+P8-P9
         G315 = P1-P2-P3+P4-2*P5-P6+P7+P8+P9
+
+        # İçlerinden en büyük olan değerin alınması
         G = max(G0, G45, G90, G135, G180, G225, G270, G315)
+
+        # Sonucun atanması
         result[i, j] = G
 
+# Yeni fotoğrafın gösterilmesi
 plt.imshow(result, cmap="gray")
 plt.show()
+
+# Yeni fotoğrafın kaydedilmesi
 cv2.imwrite('compass_'+filepath, result)

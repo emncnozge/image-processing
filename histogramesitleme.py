@@ -22,7 +22,7 @@ for i in image:
     for j in i:
         counter[j] += 1
 
-# Her pikselin hesaplaması
+# Her pikselin hesaplanması
 probability[0] = counter[0]/image.size
 
 for i in range(1, max+1):
@@ -44,5 +44,5 @@ plt.show()
 plt.hist(image.flatten(), bins=256)
 plt.show()
 
-# Yeni fotoğrafın dosyaya yazılması
+# Yeni fotoğrafın kaydedilmesi
 cv2.imwrite('histeq_'+filepath, image)

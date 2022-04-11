@@ -10,10 +10,12 @@ ysize = image.shape[1]
 
 result = np.empty((xsize, ysize), int)
 
-# üst, alt, sağ ve sol kısmı boş olan değerlerde bu yönler aynı değer kabul edilmiştir.
+# Üst, alt, sağ ve sol kısmı boş olan değerlerde bu yönler aynı değer kabul edilmiştir.
 
+# 3x3lük alanda her bir pikselin belirlenmesi
 for i in range(xsize):
     for j in range(ysize):
+
         if i == 0 and j == 0:  # sol en üst
             P1 = P2 = P3 = P4 = P5 = P7 = int(image[i, j])
             P6 = int(image[i, j+1])
@@ -81,11 +83,17 @@ for i in range(xsize):
             P8 = int(image[i+1, j])
             P9 = int(image[i+1, j+1])
 
+        # Eksenlere göre G hesabı
         Gx = -P1 + P3 - P4 + P6 - P7 + P9
         Gy = P1 + P2 + P3 - P7 - P8 - P9
+        # Bileşke büyüklük hesabı
         G = sqrt(Gx**2+Gy**2)
+        # Sonucun atanması
         result[i, j] = G
 
+# Yeni fotoğrafın gösterilmesi
 plt.imshow(result, cmap="gray")
 plt.show()
+
+# Yeni fotoğrafın kaydedilmesi
 cv2.imwrite('prewitt_'+filepath, result)
