@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import cv2
 from math import sqrt
 import numpy as np
+
 filepath = "lena-std.tif"
 image = cv2.imread(filepath, 0)
 
