@@ -9,14 +9,12 @@ max = 0
 filepath = "cameraman.tif"
 image = plt.imread(filepath)
 
-yeni = dict()
 for i in image:
     for j in i:
         if j > max:
             max = j
 
-for i in range(max+1):
-    yeni[i] = 0
+yeni = [0] * (max+1)
 
 for i in image:
     for j in i:
@@ -31,6 +29,7 @@ for i in range(image.shape[0]):
 
 plt.imshow(image, cmap="gray")
 plt.show()
+
 plt.hist(image.flatten(), bins=256)
 plt.show()
 
