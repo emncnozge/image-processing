@@ -10,7 +10,7 @@ ysize = image.shape[1]
 
 result = np.empty((xsize, ysize), int)
 
-# Üst, alt, sağ ve sol kısmı boş olan değerlerde bu yönler aynı değer kabul edilmiştir.
+# Üst, alt, sağ ve sol kısmı boş olan değerlerde bu yönler aynı değer (image[i,j]) kabul edilmiştir.
 
 # 3x3lük alanda her bir pikselin belirlenmesi
 for i in range(xsize):
