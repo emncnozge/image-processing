@@ -1,21 +1,37 @@
 import matplotlib.pyplot as plt
 import cv2
 
-eskimin = 110
-eskimax = 250
-yenimin = 45
+eskimin = 40
+eskimax = 103
+yenimin = 90
 yenimax = 200
 max = 0
-filepath = "cameraman.tif"
+
+filepath = "lena-std.tif"
 image = plt.imread(filepath)
+
+# RGB fotoğrafı grayscale yapma
+if image.ndim!=2: 
+    try:
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    except:
+        print("Fotoğraf RGB ya da grayscale değil!")
 
 # Fotoğraftaki en büyük renk değeri
 for i in image:
     for j in i:
         if j > max:
             max = j
-
-yeni = [0] * (max+1)
+            
+graylevel=0
+# Fotoğrafın gri seviyesi
+while True:
+    if 2**graylevel>max:
+        break
+    else:
+        graylevel+=1
+    
+yeni = [0] * (2**graylevel)
 
 # Her pikselin hesaplanması
 for i in image:
@@ -35,7 +51,7 @@ plt.imshow(image, cmap="gray")
 plt.show()
 
 # Yeni fotoğrafın histogramının gösterilmesi
-plt.hist(image.flatten(), bins=256)
+plt.hist(image.flatten(), bins=2**graylevel)
 plt.show()
 
 # Yeni fotoğrafın kaydedilmesi
