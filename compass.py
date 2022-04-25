@@ -100,7 +100,7 @@ for i in range(xsize):
         result[i, j] = G
 
 # Yeni fotoğrafın gösterilmesi
-plt.imshow(result, cmap="gray")
+plt.imshow(result, cmap="gray", vmin=0, vmax=255)
 plt.show()
 
 # Yeni fotoğrafın kaydedilmesi
