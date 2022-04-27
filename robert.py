@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import cv2
 from math import sqrt
 import numpy as np
@@ -8,8 +7,7 @@ image = cv2.imread(filepath, 0)
 
 xsize = image.shape[0]
 ysize = image.shape[1]
-
-result = np.empty((xsize, ysize), int)
+robert = np.empty((xsize, ysize), int)
 
 # Üst, alt, sağ ve sol kısmı boş olan değerlerde bu yönler aynı değer (image[i,j]) kabul edilmiştir.
 # 2x2lik matriste sol en üst merkez nokta seçilmiştir
@@ -17,7 +15,6 @@ result = np.empty((xsize, ysize), int)
 # 2x2lik alanda her bir pikselin belirlenmesi
 for i in range(xsize):
     for j in range(ysize):
-
         if i == 0 and j == ysize-1:  # sağ en üst
             P1 = P2 = P4 = int(image[i, j])
             P3 = int(image[i+1, j])
@@ -50,12 +47,15 @@ for i in range(xsize):
         # Bileşke büyüklük hesabı
         G = sqrt(Gx**2+Gy**2)
 
+        #Sınırlar
+        G = 255 if G > 255 else G
+
         # Sonucun atanması
-        result[i, j] = G
+        robert[i, j] = G
 
 # Yeni fotoğrafın gösterilmesi
-plt.imshow(result, cmap="gray")
-plt.show()
+cv2.imshow("Robert ("+filepath+")",robert.astype(np.uint8))
+cv2.waitKey()
 
 # Yeni fotoğrafın kaydedilmesi
-cv2.imwrite('robert_'+filepath, result)
+cv2.imwrite('robert_'+filepath, robert)

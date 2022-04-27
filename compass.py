@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 
@@ -7,15 +6,13 @@ image = cv2.imread(filepath, 0)
 
 xsize = image.shape[0]
 ysize = image.shape[1]
-
-result = np.empty((xsize, ysize), int)
+compass = np.empty((xsize, ysize), int)
 
 # Üst, alt, sağ ve sol kısmı boş olan değerlerde bu yönler aynı değer (image[i,j]) kabul edilmiştir.
 
 # 3x3lük alanda her bir pikselin belirlenmesi
 for i in range(xsize):
     for j in range(ysize):
-
         if i == 0 and j == 0:  # sol en üst
             P1 = P2 = P3 = P4 = P5 = P7 = int(image[i, j])
             P6 = int(image[i, j+1])
@@ -96,12 +93,16 @@ for i in range(xsize):
         # İçlerinden en büyük olan değerin alınması
         G = max(G0, G45, G90, G135, G180, G225, G270, G315)
 
+        #Sınırlar
+        G = 255 if G > 255 else G
+        G = 0 if G < 0 else G
+
         # Sonucun atanması
-        result[i, j] = G
+        compass[i, j] = G
 
 # Yeni fotoğrafın gösterilmesi
-plt.imshow(result, cmap="gray", vmin=0, vmax=255)
-plt.show()
+cv2.imshow("Compass ("+filepath+")", compass.astype(np.uint8))
+cv2.waitKey()
 
 # Yeni fotoğrafın kaydedilmesi
-cv2.imwrite('compass_'+filepath, result)
+cv2.imwrite('compass_'+filepath, compass)
