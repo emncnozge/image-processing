@@ -81,39 +81,41 @@ while islem != 5:
             koordinatlar[i] = calcMatrixProduct(
                 rotating_matrix, [koordinatlar[i][0], koordinatlar[i][1], koordinatlar[i][2], 1])
 
-    if islem == 4:
-        xmax = -999999
-        xmin = 999999
-        ymax = -999999
-        ymin = 999999
-        zmax = -999999
-        zmin = 999999
+    if islem == 4: # Şekil çizimi
+        xmax = -9999999
+        ymax = -9999999
+        zmax = -9999999
+        xmin = 9999999
+        ymin = 9999999
+        zmin = 9999999
 
         for i in range(len(koordinatlar)):
-            if xmax < koordinatlar[i][0]:
-                xmax = koordinatlar[i][0]
-            if xmin > koordinatlar[i][0]:
-                xmin = koordinatlar[i][0]
-            if ymax < koordinatlar[i][1]:
-                ymax = koordinatlar[i][1]
-            if ymin > koordinatlar[i][1]:
-                ymin = koordinatlar[i][1]
-            if zmax < koordinatlar[i][2]:
-                zmax = koordinatlar[i][2]
-            if zmin > koordinatlar[i][2]:
-                zmin = koordinatlar[i][2]
-
+            if xmax < koordinatlar[i][0]: xmax = koordinatlar[i][0]
+            if xmin > koordinatlar[i][0]: xmin = koordinatlar[i][0]
+            if ymax < koordinatlar[i][1]: ymax = koordinatlar[i][1]
+            if ymin > koordinatlar[i][1]: ymin = koordinatlar[i][1]
+            if zmax < koordinatlar[i][2]: zmax = koordinatlar[i][2]
+            if zmin > koordinatlar[i][2]: zmin = koordinatlar[i][2]
+            
+        if not 0<xmin<2: xmin-=2
+        if not 0<ymin<2: ymin-=2
+        if not 0<zmin<2: zmin-=2
+        
         fig = plt.figure()
         ax = fig.add_subplot(projection="3d")
         ax.add_collection(Poly3DCollection([koordinatlar]))
-        ax.set_xlim([xmin-2, xmax+2])
-        ax.set_ylim([ymin-2, ymax+2])
-        ax.set_zlim([zmin-2, zmax+2])
+        ax.set_xlim([xmin, xmax+2.0])
+        ax.set_ylim([ymin, ymax+2.0])
+        ax.set_zlim([zmin, zmax+2.0])
         plt.show()
+        
+    if islem == 5:
+        break
+        
+    if islem != 4 and islem!=5:
+        for i in range(len(koordinatlar)):
 
-    for i in range(len(koordinatlar)):
-
-        print("\n", str(i+1)+". koordinat -->",
-              "x:", koordinatlar[i][0],
-              " y:", koordinatlar[i][1],
-              " z:", koordinatlar[i][2])
+            print("\n", str(i+1)+". koordinat -->",
+                  "x:", koordinatlar[i][0],
+                  " y:", koordinatlar[i][1],
+                  " z:", koordinatlar[i][2])
