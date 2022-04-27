@@ -79,11 +79,10 @@ while islem != 4:
         for i in range(kenar):
             koordinatlar[i] = calcMatrixProduct(
                 rotating_matrix, [koordinatlar[i][0], koordinatlar[i][1], koordinatlar[i][2], 1])
-            
+
     for i in range(len(koordinatlar)):
 
         print("\n", str(i+1)+". koordinat -->",
               "x:", koordinatlar[i][0],
               " y:", koordinatlar[i][1],
               " z:", koordinatlar[i][2])
-        
